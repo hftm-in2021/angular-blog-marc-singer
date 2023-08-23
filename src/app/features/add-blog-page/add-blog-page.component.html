@@ -1,1 +1,24 @@
-<p>add-blog-page works!</p>
+<div class="blog-container" *ngIf="blogStateService.state$ | async as state">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="blog-input">
+        <div class="error-message" *ngIf="state.error" color="warn">
+            Blog entry could not be published, please try again !
+          </div>
+        <button type="submit" class="submit-button" mat-raised-button color="primary" [disabled]="!form.valid">Publish</button>
+        <button mat-raised-button color="secondary" (click)="form.reset(); (false)">Reset</button>
+        <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+        <mat-error>
+            <span *ngIf="form?.get('title')?.errors?.['required']">Title should contain the title of your post</span>
+            <span *ngIf="form?.controls?.['title']?.errors?.['pattern']">Invalid title</span>
+        </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+        <mat-label>Post your ideas...</mat-label>
+        <textarea matInput rows="20" formControlName="content"></textarea>
+        <mat-error>Content should contain the content of your post</mat-error>
+        </mat-form-field>
+    </div>
+    </form>
+</div>

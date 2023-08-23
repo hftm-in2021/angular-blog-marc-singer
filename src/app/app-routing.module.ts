@@ -6,13 +6,13 @@ import {
   provideRouter,
   withComponentInputBinding,
 } from '@angular/router';
-import { Blog, BlogDataService } from './core/blog-data.service';
+import { Blog, BlogBackendService } from './core/blog-backend.service';
 import { ErrorPageComponent } from './core/static/error-page.component';
 import { PageNotFoundPageComponent } from './core/static/page-not-found-page.component';
 import { authenticationGuard } from './core/auth/authentication.guard';
 
 export const blogResolver: ResolveFn<Blog[]> = () =>
-  inject(BlogDataService).getBlogPosts();
+  inject(BlogBackendService).getBlogPosts();
 
 const routes: Routes = [
   {

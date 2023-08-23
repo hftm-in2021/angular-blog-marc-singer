@@ -18,17 +18,32 @@ const BlogSchema = z.object({
 
 const BlogArraySchema = z.array(BlogSchema);
 
+const CreateBlogSchema = z.object({
+  title: z.string(),
+  content: z.string(),
+});
+
+export type CreateBlog = z.infer<typeof CreateBlogSchema>;
+
 export type Blog = z.infer<typeof BlogSchema>;
 
 @Injectable({
   providedIn: 'root',
 })
-export class BlogDataService {
+export class BlogBackendService {
   constructor(private httpClient: HttpClient) {}
 
   getBlogPosts(): Observable<Blog[]> {
     return this.httpClient
       .get<Blog[]>(`${environment.serviceUrl}/entries`)
       .pipe(map((blogs) => BlogArraySchema.parse(blogs)));
+  }
+
+  addBlog(blog: CreateBlog) {
+    CreateBlogSchema.parse(blog);
+    return this.httpClient
+      .post<void>(`${environment.serviceUrl}/entries`, blog)
+      .subscribe(() => console.log('Sucessfully added new blog entry'), 
+        (err) => console.error('Error when adding new blog entry: ', err));
   }
 }
