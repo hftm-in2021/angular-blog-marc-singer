@@ -1,0 +1,32 @@
+:host {
+  .blog-container {
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+  @media screen and (min-width: 450px) {
+    .blog-container {
+      width: 400px;
+    }
+  }
+
+  @media screen and (min-width: 841px) {
+    .blog-container {
+      width: 840px;
+    }
+  }
+
+  @media screen and (min-width: 1261px) {
+    .blog-container {
+      width: 1260px;
+    }
+  }
+
+  @media screen and (min-width: 1681px) {
+    .blog-container {
+      width: 1680px;
+    }
+  }
+}

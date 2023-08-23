@@ -1,0 +1,24 @@
+<mat-card class="blog-card">
+  <mat-card-header>
+    <mat-card-title class="card-title">{{ blog.title }}</mat-card-title>
+  </mat-card-header>
+  <img
+    height="300"
+    class="blog-image"
+    mat-card-image
+    src="{{ 'https://picsum.photos/seed/' + blog.id + '/348/300' }}"
+    alt="Random Photo"
+  />
+  <mat-card-content>
+    <p>{{ blog.contentPreview }}</p>
+  </mat-card-content>
+  <mat-card-footer class="blog-footer">
+    <mat-card-content class="blog-author">
+      <p>{{ blog.author }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,23 @@
+:host {
+  .blog-card {
+    margin: 0.625rem;
+    width: 400px;
+
+    .card-title {
+      min-height: 4rem;
+    }
+
+    .blog-image {
+      border-radius: 0.8rem;
+      margin: 0.8rem;
+    }
+
+    .blog-footer {
+      display: flex;
+
+      .blog-author {
+        flex-grow: 1;
+      }
+    }
+  }
+}

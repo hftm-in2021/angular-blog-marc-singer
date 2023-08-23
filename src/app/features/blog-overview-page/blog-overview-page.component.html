@@ -1,0 +1,10 @@
+<ng-container *ngIf="blogs">
+  <div class="blog-container">
+    <app-blog-overview-card
+      *ngFor="let blog of blogs; let i = index"
+      [blog]="blog"
+      [index]="i"
+      [routerLink]="['/detail/', blog.id]"
+    ></app-blog-overview-card>
+  </div>
+</ng-container>

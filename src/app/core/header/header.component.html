@@ -1,0 +1,67 @@
+<ng-container *ngIf="loginResponse$ | async; let loginResponse">
+  <div>
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Blog Frog</span>
+      <span class="spacer"></span>
+
+      <button
+        *ngIf="showCreateButton$ | async"
+        id="add-blog"
+        [routerLink]="['/add-blog/']"
+        mat-flat-button
+        color="primary"
+      >
+        Erstelle einen neuen Blog!
+      </button>
+
+      <ng-container
+        *ngIf="loginResponse.isAuthenticated; then loggedIn; else loggedOut"
+      ></ng-container>
+
+      <ng-template #loggedOut>
+        <button
+          mat-icon-button
+          matTooltip="Login"
+          class="example-icon favorite-icon"
+          aria-label="Login button"
+          (click)="login$.emit($event)"
+        >
+          <mat-icon>login</mat-icon>
+        </button>
+      </ng-template>
+
+      <ng-template #loggedIn>
+        <div
+          id="profileImage"
+          [innerHTML]="initials$ | async"
+          [matMenuTriggerFor]="beforeMenu"
+          matTooltip="You are logged in as {{
+            loginResponse.userData.preferred_username
+          }}"
+        ></div>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>My Account</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>favorite</mat-icon>
+            <span>My favorite blogs</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logoff$.emit($event)">
+            <mat-icon>logout</mat-icon>
+            <span>Log out</span>
+          </button>
+        </mat-menu>
+      </ng-template>
+    </mat-toolbar>
+  </div>
+</ng-container>
