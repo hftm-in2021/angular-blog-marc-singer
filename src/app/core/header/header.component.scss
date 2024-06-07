@@ -1,0 +1,20 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+#profileImage {
+  width: 2.1875rem;
+  height: 2.1875rem;
+  border-radius: 20px;
+  background: #0c2354;
+  font-size: 0.9rem;
+  color: #fff;
+  text-align: center;
+  line-height: 2.1875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#add-blog {
+  margin-right: 100px;
+}
